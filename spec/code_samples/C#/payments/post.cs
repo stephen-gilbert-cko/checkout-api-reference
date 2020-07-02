@@ -17,7 +17,7 @@ try
     }
 
     if (response.Payment.Approved)
-        return PaymentSucessful(response.Payment);
+        return PaymentSuccessful(response.Payment);
 
     return PaymentDeclined(response.Payment);
 }
