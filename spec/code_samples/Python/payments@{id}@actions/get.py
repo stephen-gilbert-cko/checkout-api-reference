@@ -1,6 +1,6 @@
 import checkout_sdk as sdk
 
-api = sdk.get_api(secret_key='<your secret key>')       # default sandbox = True
+api = sdk.get_api(secret_key='<your secret key>')
 
 try:
     actions = api.payments.get_actions('pay_...')
@@ -11,4 +11,3 @@ try:
         print(action.reference)
 except sdk.errors.CheckoutSdkError as e:
     print('{0.http_status} {0.error_type} {0.elapsed} {0.request_id}'.format(e))
-    

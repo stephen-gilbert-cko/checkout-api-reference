@@ -1,6 +1,6 @@
 import checkout_sdk as sdk
 
-api = sdk.get_api(secret_key='<your secret key>')       # default sandbox = True
+api = sdk.get_api(secret_key='<your secret key>')
 
 try:
     payment = api.payments.get('pay_...')

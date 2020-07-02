@@ -1,14 +1,14 @@
 import checkout_sdk as sdk
 
-api = sdk.get_api(secret_key='<your secret key>')       # default sandbox = True
+api = sdk.get_api(secret_key='<your secret key>')
 
 try:
     payment = api.payments.request(
         source={
             'token': 'tok_...',
         },
-        amount=100,                                     # cents
-        currency=sdk.Currency.USD,                      # or 'usd'
+        amount=100,
+        currency=sdk.Currency.USD,
         reference='pay_ref'
     )
     print(payment.id)

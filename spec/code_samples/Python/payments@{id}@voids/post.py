@@ -1,10 +1,10 @@
 import checkout_sdk as sdk
 
-api = sdk.get_api(secret_key='<your secret key>')       # default sandbox = True
+api = sdk.get_api(secret_key='<your secret key>')
 
 try:
     action = api.payments.void('pay_...', reference='VOID')
-    
+
     print(action.id)
     print(action.get_link('payment').href)
 except sdk.errors.CheckoutSdkError as e:
