@@ -16,13 +16,8 @@ var request = new WalletTokenRequest(WalletType.ApplePay, tokenData);
 
 try
 {
-  var token = await api.Tokens.RequestAsync(request);
-  token.ShouldNotBeNull();
-  token.Token.ShouldNotBeNullOrEmpty();
-  token.Type.ShouldBe(WalletType.ApplePay.ToString());
-  token.ExpiresOn.ShouldBeGreaterThan(DateTime.UtcNow);
-
-  return response.Token;
+  var response = await api.Tokens.RequestAsync(request);
+  var token = response.Token;
 }
 catch (CheckoutValidationException validationEx)
 {
