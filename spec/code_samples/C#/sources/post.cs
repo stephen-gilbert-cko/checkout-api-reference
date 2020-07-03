@@ -1,30 +1,34 @@
 var api = CheckoutApi.Create("your secret key");
 
-var address = new Address()
+var sourceRequest = new SourceRequest
+(
+  "sepa",
+  new Address()
+  {
+    AddressLine1 = "Checkout.com",
+    AddressLine2 = "Shepherdess Walk",
+    City = "London",
+    State = "London",
+    Zip = "N1 7LH",
+    Country = "GB"
+  }
+)
 {
-  AddressLine1 = "Checkout.com",
-  AddressLine2 = "90 Tottenham Court Road",
-  City = "London",
-  State = "London",
-  Zip = "W1T 4TJ",
-  Country = "GB"
-};
-
-var sourceRequest = new SourceRequest("sepa", address);
-sourceRequest.Reference = ".NET SDK test";
-sourceRequest.Phone = new Phone()
-{
-  CountryCode = "+1",
-  Number = "415 555 2671"
-};
-sourceRequest.SourceData = new SourceData()
-{
+  Reference = "X-080957-N34",
+  Phone = new Phone()
+  {
+    CountryCode = "+1",
+    Number = "415 555 2671"
+  },
+  SourceData = new SourceData()
+  {
     { "first_name", "Marcus" },
     { "last_name", "Barrilius Maximus" },
     { "account_iban", "DE68100100101234567895" },
     { "bic", "PBNKDEFFXXX" },
-    { "billing_descriptor", ".NET SDK test" },
+    { "billing_descriptor", "Test" },
     { "mandate_type", "single" }
+  }
 };
 
 try

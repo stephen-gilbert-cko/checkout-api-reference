@@ -1,8 +1,9 @@
 var api = CheckoutApi.Create("your secret key");
 
-var updatedWebhook = new Webhook()
+// Original webhook
+var webhook = new Webhook()
 {
-  Url = "https://example.com/webhooks/updated",
+  Url = "https://example.com/webhooks",
   EventTypes = new List<string>
     {
         "payment_pending",
@@ -13,8 +14,12 @@ var updatedWebhook = new Webhook()
         { "Authorization", "1234" }
     }
 };
+var webhookRegistrationResponse = await Api.Webhooks.RegisterWebhookAsync(new RegisterWebhookRequest(webhook));
 
+// Partially update
+webhook.Url += "/partially/updated";
+webhook.Headers = null;
 var webhookPartialUpdateResponse = await Api.Webhooks.PartiallyUpdateWebhookAsync(
-                                                        "wh_ahun3lg7bf4e3lohbhni65335u",
+                                                        webhookRegistrationResponse.Id,
                                                         new PartialUpdateWebhookRequest(webhook)
                                                       );
