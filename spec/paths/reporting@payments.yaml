@@ -42,7 +42,7 @@ get:
       default: 200
 
   responses:
-    '201':
+    '200':
       description: Payments report retrieved successfully
       content:
         application/json:

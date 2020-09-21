@@ -20,7 +20,7 @@ get:
       description: The unique payment identifier
 
   responses:
-    '201':
+    '200':
       description: Payment report returned successfully
       content:
         application/json:
