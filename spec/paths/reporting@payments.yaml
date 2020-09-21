@@ -38,10 +38,10 @@ get:
       name: limit
       schema:
         type: integer
+        maximum: 500
+        default: 200
       required: false
       description: Sets a limit on the number of results
-      maximum: 500
-      default: 200
 
   responses:
     '200':
