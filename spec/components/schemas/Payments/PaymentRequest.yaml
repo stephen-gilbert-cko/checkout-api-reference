@@ -28,13 +28,18 @@ properties:
       - MOTO
     default: Regular
     example: Recurring
+  merchant_initiated:
+    type: boolean
+    description: Flags the payment as a merchant-initiated transaction (MIT). <a href="https://docs.checkout.com/quickstart/use-an-existing-card/stored-card-details" target="_blank">Must be set to `true` for all MITs</a>.
   reference:
     type: string
-    description: A reference you can later use to identify this payment, such as an order number
+    description: A reference you can later use to identify this payment, such as an order number. Required when processing via dLocal or Bambora.
+    maxLength: 50
     example: "ORD-5023-4E89"
   description:
     type: string
     description: A description of the payment
+    maxLength: 100
     example: "Set of 3 masks"
   capture:
     type: boolean
@@ -64,10 +69,12 @@ properties:
         type: string
         format: email
         description: An optional email address to associate with the customer
+        maxLength: 255
         example: "jokershere@gmail.com"
       name:
         type: string
         description: The customer's name. This will only set the name for *new* customers
+        maxLength: 255
         example: "Jack Napier"
   billing_descriptor:
     $ref: '#/components/schemas/BillingDescriptor'
@@ -90,6 +97,7 @@ properties:
     description: |
       For payments that use <a href="https://docs.checkout.com/quickstart/use-an-existing-card/stored-card-details" target="blank">stored card details</a>, such as recurring payments –
       an existing payment identifier from the recurring series or the Scheme Transaction Id
+    maxLength: 100
     example: "pay_fun26akvvjjerahhctaq2uzhu4"
   risk:
     $ref: '#/components/schemas/RiskRequest'
@@ -97,11 +105,13 @@ properties:
     type: string
     format: uri
     description: For redirect payment methods, this overrides the default success redirect URL configured on your account
+    maxLength: 255
     example: "http://example.com/payments/success"
   failure_url:
     type: string
     format: uri
     description: For redirect payment methods, this overrides the default failure redirect URL configured on your account
+    maxLength: 255
     example: "http://example.com/payments/fail"
   payment_ip:
     description: The IP address used to make the payment. Required for some risk checks
@@ -126,19 +136,19 @@ properties:
             example: "MX"
           payer:
             type: object
-            description: Details about the cardholder.
+            description: Details about the customer. These details may differ from those of the cardholder.
             properties:
               document:
                 type: string
-                description: The cardholder's personal identification number. The identification required is country-specific. See the <a href="https://docs.dlocal.com/api-documentation/payins-api-reference/country-reference#documents" target="_blank">dLocal documentation</a> for more information.
-                example: "DocumentId"
+                description: The customer's personal identification number. The identification required is country-specific. See the <a href="https://docs.dlocal.com/api-documentation/payins-api-reference/country-reference#documents" target="_blank">dLocal documentation</a> for more information.
+                example: "5305305305"
               name:
                 type: string
-                description: The cardholder's full name.
+                description: The customer's full name.
                 example: "John Doe"
               email:
                 type: string
-                description: The cardholder's email address.
+                description: The customer's email address.
                 example: "john.doe@example.com"
           installments:
             type: object
