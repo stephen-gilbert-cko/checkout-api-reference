@@ -125,3 +125,4 @@ properties:
     type: string
     pattern: /^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?$/
     description: RFC 1766 customer's locale. Optional, default taken from business settings
+    example: en-GB
