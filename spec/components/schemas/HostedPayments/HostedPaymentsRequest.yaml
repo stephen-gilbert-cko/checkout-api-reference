@@ -28,17 +28,17 @@ properties:
     description: The customer's details
     required:
       - name
-      - email
     properties:
       id:
         type: string
         description: The identifier of an existing customer. If neither customer id nor email is provided, then a new customer will be registered
-        example: cus_387ac7a83a054e37ae14010542
+        example: 
         pattern: ^(cus)_(\w{26})$
         minLength: 30
         maxLength: 30
       email:
         type: string
+        example: example@email.com
         description: An optional email address to associate with the customer
       name:
         type: string
@@ -126,3 +126,16 @@ properties:
     pattern: /^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?$/
     description: RFC 1766 customer's locale. Optional, default taken from business settings
     example: en-GB
+example:
+  amount: 1000
+  currency: "GBP"
+  reference: "ORD-123A"
+  billing:
+    address:
+      country: "GB"
+  customer:
+    name: "Jack Napier"
+    email: "jokershere@gmail.com"
+  success_url: "https://example.com/payments/success"
+  failure_url: "https://example.com/payments/failure"
+  cancel_url: "https://example.com/payments/checkout"
