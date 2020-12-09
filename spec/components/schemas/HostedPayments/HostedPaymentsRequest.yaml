@@ -32,7 +32,7 @@ properties:
       id:
         type: string
         description: The identifier of an existing customer. If neither customer id nor email is provided, then a new customer will be registered
-        example: 
+        example: cus_387ac7a83a054e37ae14010542
         pattern: ^(cus)_(\w{26})$
         minLength: 30
         maxLength: 30
